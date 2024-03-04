@@ -90,7 +90,7 @@ DATABASES = {
 AUTH_USER_MODEL = "user.User"
 
 
-SHORT_LINK_LENGTH = 5
+SHORT_LINK_LENGTH = int(os.environ.get("SHORT_LINK_LENGTH", 5))
 
 
 # Password validation
