@@ -9,3 +9,11 @@ class ModelSerializerDefaultsMixin:
                 extra_kwargs[field.name] = {"default": field.default}
         self.Meta.extra_kwargs = extra_kwargs
         super(ModelSerializerDefaultsMixin, self).__init__(*args, **kwargs)
+
+
+class BaseReadOnlyDeleteAdminMixin:
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
