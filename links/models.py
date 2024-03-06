@@ -8,9 +8,9 @@ from django.conf import settings
 
 
 class ShortLink(models.Model):
-    link = models.TextField(validators=[validators.URLValidator()])
+    link = models.TextField(validators=[validators.URLValidator()], unique=True)
     short_link = models.CharField(
-        max_length=settings.SHORT_LINK_LENGTH, null=True, blank=True
+        max_length=settings.SHORT_LINK_LENGTH, null=True, blank=True, unique=True
     )
     ip = models.GenericIPAddressField(null=True, blank=True)
     user_agent = models.CharField(null=True, blank=True)
