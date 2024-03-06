@@ -2,10 +2,11 @@ from .models import ShortLink
 from .serializers import ShortLinkSerializer
 from django.shortcuts import get_object_or_404
 from django.db.models import F
-from rest_framework import generics, status
+from rest_framework import generics
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
 
 
 class ShortLinkView(generics.CreateAPIView):
@@ -15,6 +16,7 @@ class ShortLinkView(generics.CreateAPIView):
 
 
 @api_view(["PUT"])
+@csrf_exempt
 def short_to_long_link(request, short_link):
     link = get_object_or_404(ShortLink, short_link=short_link)
     ShortLink.objects.filter(short_link=short_link).update(

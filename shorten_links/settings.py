@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+import string
+import random
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
     "user",
     "links",
 ]
@@ -91,6 +94,10 @@ AUTH_USER_MODEL = "user.User"
 
 
 SHORT_LINK_LENGTH = int(os.environ.get("SHORT_LINK_LENGTH", 5))
+
+# list of symbols used to generate shor link
+SYMBOLS_LIST = list(string.ascii_letters) + ["-", "_", "+"]
+random.shuffle(SYMBOLS_LIST) # To avoid problems with the same short link during the development phase
 
 
 # Password validation

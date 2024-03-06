@@ -1,12 +1,6 @@
-import string
-import random
 from django.conf import settings
 from itertools import permutations
 
-
-# list of symbols used to generate shor link
-SYMBOLS_LIST = list(string.ascii_letters) + ["-", "_", "+"]
-random.shuffle(SYMBOLS_LIST) # To avoid problems with the same short link during the development phase
 
 class Permutation:
     """
@@ -14,7 +8,7 @@ class Permutation:
     To avoid problems after a server restart, the list is shuffed. 
     """
 
-    short_link_generator = permutations(SYMBOLS_LIST, settings.SHORT_LINK_LENGTH)
+    short_link_generator = permutations(settings.SYMBOLS_LIST, settings.SHORT_LINK_LENGTH)
 
     @classmethod
     def create_diffrent_permutation_generator(
