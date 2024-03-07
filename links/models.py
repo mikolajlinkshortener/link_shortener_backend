@@ -3,12 +3,8 @@ from django.core import validators
 from django.conf import settings
 
 
-# class LongURLFied(models.TextField):
-#     default_validators = [validators.URLValidator]
-
-
 class ShortLink(models.Model):
-    link = models.TextField(validators=[validators.URLValidator()], unique=True)
+    link = models.TextField(validators=[validators.URLValidator()])
     short_link = models.CharField(
         max_length=settings.SHORT_LINK_LENGTH, null=True, blank=True, unique=True
     )

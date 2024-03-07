@@ -40,6 +40,7 @@ def test_same_link_retunrn_same_short_link(client, link):
 def test_short_to_long_return_correct_long_link(client, create_short_link, link):
     short_link = create_short_link(link)
     response = client.put(reverse("short_to_long_link", args=[short_link]))
+    print(response)
     assert response.data.get("link") == link
 
 
